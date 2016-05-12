@@ -1,13 +1,26 @@
 from setuptools import setup, find_packages
 
+with open('requirements.txt') as f:
+    req = f.read().splitlines()
+
 setup(
     name='flashcard',
-    version='0.0.1',
+    version="0.0.1",
     description='Simple flashcard in your terminal.',
     author='sotetsuk',
-    install_requires=['docopt'],
+    url='https://github.com/sotetsuk/flashcard',
+    author_email='sotetsu.koyamada@gmail.com',
+    license='MIT',
+    install_requires=req,
     packages=find_packages(),
     entry_points={
         'console_scripts': 'flashcard = flashcard.main:main'
-    }
+    },
+    classifiers=[
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "License :: OSI Approved :: MIT License"
+    ],
 )
