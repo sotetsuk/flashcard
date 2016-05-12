@@ -7,6 +7,10 @@ Simple flashcard in your terminal
 
 ## Building
 
+```sh
+$ python setup.py install
+```
+
 ## Features
 
 ## License
