@@ -1,0 +1,6 @@
+.idea/*
+.python-version
+build/*
+dist/*
+flashcard.egg-info/*
+flashcard.iml
