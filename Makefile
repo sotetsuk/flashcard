@@ -13,3 +13,7 @@ test:
 
 install_requirements:
 	pip install -r requirements.txt
+
+pypi:
+	python setup.py register
+	python setup.py sdist bdist bdist_egg upload
