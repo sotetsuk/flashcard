@@ -12,6 +12,9 @@ Options:
   --version     Show version.
 """
 
+from typing import Tuple
+from termcolor import colored
+import difflib
 from docopt import docopt
 
 from flashcard.property import Flashcard
@@ -33,11 +36,31 @@ def run(flashcard: Flashcard):
 
         if expected == ans.strip():
             num_collect += 1
-            print('[o]', expected)
+            print('[' + colored('o', 'green') + ']', colored(expected, "green"))
         else:
-            print('[x]', expected)
+            expected_with_mistake, ans_with_mistake = get_diff_with_color(expected, ans)
+            print('[' + colored('x', 'red') + ']', expected_with_mistake)
+            print('   ', ans_with_mistake)
 
     print("{}/{}".format(num_collect, n))
+
+
+def get_diff_with_color(expected: str, ans: str) -> Tuple[str, str]:
+    d = difflib.Differ()
+    diff = d.compare(expected, ans)
+
+    expected_with_mistake = ""
+    ans_with_mistake = ""
+    for e in diff:
+        if e.startswith("+"):
+            ans_with_mistake += colored(e[-1], "red")
+        elif e.startswith("-"):
+            expected_with_mistake += colored(e[-1], "green")
+        else:
+            expected_with_mistake += e[-1]
+            ans_with_mistake += e[-1]
+
+    return expected_with_mistake, ans_with_mistake
 
 
 def main():
