@@ -25,9 +25,6 @@ from flashcard.sources import fetch_google_spreadsheet
 
 
 def run(flashcard: Flashcard, hint_rate=None):
-    for i, card in enumerate(flashcard):
-        assert len(card), "This flashcard is invalid: expect 2 columns but get {} at line {}".format(len(card), i)
-
     n = len(flashcard)
     num_collect = 0
     for i, card in enumerate(flashcard):
