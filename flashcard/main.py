@@ -41,7 +41,7 @@ def run(flashcard: Flashcard):
 
 
 def main():
-    args = docopt(__doc__, version='flashcard 0.0.1')
+    args = docopt(__doc__, version='flashcard 0.0.2')
     if args['<flashcard>'].startswith("https://docs.google.com/spreadsheets/"):
         flashcard = fetch_google_spreadsheet(args['<flashcard>'])
     else:
