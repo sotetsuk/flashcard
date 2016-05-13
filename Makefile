@@ -1,4 +1,4 @@
-.PHONY: clean build
+.PHONY: clean build test install_requirements
 
 clean: 
 	rm -rf build
@@ -9,7 +9,7 @@ build:
 	python setup.py install
 
 test:
-    python -m unittest -v flashcard/tests/*.py
+	python -m unittest -v flashcard/tests/*.py
 
 install_requirements:
-    pip install -r requirements.txt
+	pip install -r requirements.txt
