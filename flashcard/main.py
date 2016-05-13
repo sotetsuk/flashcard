@@ -75,7 +75,7 @@ def get_diff_with_color(expected: str, ans: str) -> Tuple[str, str]:
 def hint(expected: str, hint_rate=0.5) -> str:
     ret = ""
     for c in expected:
-        if c == " ":
+        if c in [" ", ",", ".", "?", "!", '"', "'", "-"]:
             ret += c
         elif random() > hint_rate:
             ret += "*"
