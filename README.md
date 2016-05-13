@@ -9,19 +9,30 @@ Simple flashcard in your terminal
 
 ## Example
 
+### 1. Prepare flashcard in Google Spreadsheet: [example](https://docs.google.com/spreadsheets/d/1X1uW_ZxgwZWh9elAI1jJCYkiCbmDL-xH2zkCMEZEV4g/edit?usp=sharing)
+
+<img src="./img/spreadsheet.png" width="400px">
+
+### 2. Copy the url and learn the flashcard!
+
 ```sh
-$ flashcard https://docs.google.com/spreadsheets/d/1X1uW_ZxgwZWh9elAI1jJCYkiCbmDL-xH2zkCMEZEV4g/edit\?usp\=sharing
-001 最初のカード
->>> 1st card
-[x] Initial card
-002 二番目のカード
->>> 2nd card
-[o] 2nd card
-003 三番目のカード
->>> 3rd card
-[o] 3rd card
-2/3
+$ flashcard --hint 0.5 https://docs.google.com/spreadsheets/d/1X1uW_ZxgwZWh9elAI1jJCYkiCbmDL-xH2zkCMEZEV4g/edit?usp=sharing
 ```
+
+
+<img src="./img/example.png" width="600px">
+
+## Features
+
+- Making flashcard from (shared) Google Spreadsheet
+- Colorful diff feedback
+- Hinting option for begginers
+
+## Requirements
+
+- Python 3.5 or later
+- docopt
+- requests
 
 ## Installing
 
@@ -36,10 +47,6 @@ You can build from source codes:
 ```sh
 $ make build
 ```
-
-## Features
-
-- making flashcard from (opened) Google Spreadsheet
 
 ## License
 MIT License
