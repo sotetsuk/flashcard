@@ -3,12 +3,14 @@
 """Simple flashcard in your terminal
 
 Usage:
-  flashcard [--hint=<hint_rate>] <flashcard>
+  flashcard [--hint=<hint_rate>] [--num=<num>] [--random | -r] <flashcard>
   flashcard (-h | --help)
   flashcard --version
 
 Options:
   --hint=<hint_rate>    Show hint. p = 1 will show every character and p=0 will hide all.
+  --num=<num>           Set the number of problems
+  -r --random           Show problems randomly
   -h --help             Show this screen.
   --version             Show version.
 """
@@ -16,7 +18,7 @@ Options:
 from typing import Tuple
 from termcolor import colored
 import difflib
-from random import random
+from random import random, shuffle
 
 from docopt import docopt
 
@@ -24,10 +26,17 @@ from flashcard.property import Flashcard
 from flashcard.sources import fetch_google_spreadsheet
 
 
-def run(flashcard: Flashcard, hint_rate=None):
-    n = len(flashcard)
+def run(flashcard: Flashcard, hint_rate=None, num=None, rand=False):
+    if rand:
+        flashcard = flashcard[::]
+        shuffle(flashcard)
+
+    n = len(flashcard) if num is None else num
     num_collect = 0
-    for i, card in enumerate(flashcard):
+
+    for i in range(n):
+        card = flashcard[i]
+
         problem = card[0]
         expected = card[1]
 
@@ -95,7 +104,16 @@ def main():
         hint_rate = float(args['--hint'])
         assert 0.0 <= hint_rate <= 1.0, "hint rate should satisfy 0.0 <= hint_rate <= 1.0"
 
-    run(flashcard, hint_rate)
+    rand = False
+    if args['--random']:
+        rand = True
+
+    num = None
+    if args['--num'] is not None:
+        # TODO: input validation
+        num = int(args['--num'])
+
+    run(flashcard, hint_rate, num, rand)
 
 if __name__ == '__main__':
     main()
